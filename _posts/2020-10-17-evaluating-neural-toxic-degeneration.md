@@ -86,7 +86,7 @@ There were some phrases, which when used to prompt the models consistently retur
 
 Up next, the authors attempt to quantify the toxicity present in the training data for the LMs they tested. Specifically, the training data were OpenAI-WT (GPT-2's training data) and its open-source replica OWTC. There is about 29% overlap between the two datasets, which is low enough to come to interesting conclusions about how the models may be affected by their training data.
 
-In the figure to the left (note: it's log-transformed), we can see that about 2.1% and 4.3% of OWTC and OpenAI-WT are toxic content. About 3% of OWTC in fact comes from links shared on banned or quarantined subreddits<d-footnote>Banned subreddits are inaccessible via the website and only via data dumps, whereas quarantined subreddits are special-access only but still online.</d-footnote>.
+In Figure 2 (note: it's log-transformed), we can see that about 2.1% and 4.3% of OWTC and OpenAI-WT are toxic content. About 3% of OWTC in fact comes from links shared on banned or quarantined subreddits<d-footnote>Banned subreddits are inaccessible via the website and only via data dumps, whereas quarantined subreddits are special-access only but still online.</d-footnote>.
 
 ## Recommendations
 
@@ -94,7 +94,7 @@ The authors conclude with a discussion and a variety of recommendations for NLP 
 
 1. "Can language models ever fully 'forget' toxic pretraining data through further adaptation?"
 
-    Essentially, you can start with a model trained on some bad data, but is there any amount of finite data you could then pretrain on to wash out, to "forget", the bad stuff? It seems as though the LMs are "memorizing" the bad content, which might come from such content being more salient to the model. The authors recommend future work explores whether some types of toxicity are more difficult for models to forget.
+    Essentially, you can start with a model trained on some bad data, but is there any amount of finite data you could then continue pretraining on to wash out, to "forget", the bad stuff? It seems as though the LMs are "memorizing" the bad content, which might come from such content being more salient to the model. The authors recommend future work explores whether some types of toxicity are more difficult for models to forget.
 
 2. Purposeful decoding
 
