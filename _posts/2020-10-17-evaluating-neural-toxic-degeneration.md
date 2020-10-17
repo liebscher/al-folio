@@ -3,7 +3,7 @@ layout: distill
 title:  "Review: <i>Evaluating Neural Toxic Degeneration in Language Models</i>"
 date:   2020-10-17 11:00:00
 description: Language Models suffer from degenerate and biased behavior, can we fix that?
-readtime: 5.8
+readtime: 8.4
 
 authors:
   - name: A.L.
