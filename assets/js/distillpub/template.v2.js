@@ -98,6 +98,7 @@
       }
     }
     target.description = source.description;
+    target.readtime = source.readtime;
     target.authors = source.authors.map( (authorObject) => new Author(authorObject));
     target.katex = source.katex;
     target.password = source.password;
@@ -111,6 +112,7 @@
       this.title = 'unnamed article'; // 'Attention and Augmented Recurrent Neural Networks'
       this.description = ''; // 'A visual overview of neural attention...'
       this.authors = []; // Array of Author(s)
+      this.readtime = 0;
 
       this.bibliography = new Map();
       this.bibliographyParsed = false;
@@ -1683,7 +1685,7 @@ d-appendix > distill-appendix {
   (function(exports) {
 
       function BibtexParser() {
-          
+
           this.months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
           this.notKey = [',','{','}',' ','='];
           this.pos = 0;
@@ -1819,7 +1821,7 @@ d-appendix > distill-appendix {
                       return k.toLowerCase();
                   else
                       throw "Value expected:" + this.input.substring(start) + ' for key: ' + k;
-              
+
               }        };
 
           this.value = function() {
@@ -1842,7 +1844,7 @@ d-appendix > distill-appendix {
                       return this.input.substring(start, this.pos);
                   } else {
                       this.pos++;
-                      
+
                   }            }        };
 
           this.key_equals_value = function() {
@@ -1917,7 +1919,7 @@ d-appendix > distill-appendix {
                   }
                   this.match("}");
               }        };
-      }    
+      }
       exports.toJSON = function(bibtex) {
           var b = new BibtexParser();
           b.setInput(bibtex);
@@ -1947,7 +1949,7 @@ d-appendix > distill-appendix {
               out += '}\n\n';
           }
           return out;
-          
+
       };
 
   })( exports);
@@ -2104,6 +2106,10 @@ d-appendix > distill-appendix {
       ${frontMatter.publishedDate ? `
         <p>${frontMatter.publishedMonth} ${frontMatter.publishedDay}, ${frontMatter.publishedYear}</p> ` : `
         <p><em>Not published yet.</em></p>`}
+    </div>
+    <div>
+      <h3>Reading Time</h3>
+      ${frontMatter.readtime ? `<p>${frontMatter.readtime} minutes</p>` : `<p>TBD</p>`}
     </div>
   </div>
 `;
