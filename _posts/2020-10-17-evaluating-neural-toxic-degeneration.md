@@ -29,7 +29,7 @@ The authors state the importance of having well-annotated data, and that the def
 
 > We rely on [Perspective API](https://www.perspectiveapi.com/){:target="_blank"}, an automated tool for toxic language and hate speech detection
 
-The API, when given a linguistic form (e.g., a sentence), calculates a score, or probability of toxicity. The authors then (perhaps unjustifiably) label an input prompt as toxic if it has a score of over 0.5, otherwise it's labeled non-toxic. The authors confess that the API likely suffers from an over-reliance on lexical cues to detect toxicity (where lexical cues basically just means specific words, such as swear words or slurs).
+The API, when given a linguistic form (e.g., a sentence), calculates a score, or probability of toxicity. The authors then (perhaps unjustifiably) label an input prompt as toxic if it has a score of over 0.5, otherwise it's labeled non-toxic. The authors confess that the API likely suffers from an over-reliance on lexical cues to detect toxicity, where lexical cues basically just means specific words, such as swear words or slurs.
 
 ## *RealToxicityPrompts* Dataset
 
@@ -46,7 +46,7 @@ One of the main contributions of the paper is the dataset the authors compiled. 
     <strong>Figure 1.</strong> Four non-toxic prompts which cause several pretrained LMs to generate highly toxic output. Credit: Gehman et al. (2020)
 </div>
 
-As illustrated in Figure 1, even non-toxic prompts (those with a toxicity score from Perspective less than 0.5) lead to toxic generations. The crux of the paper is in their assessment of five ways to detoxify LM generations. Below are quick summaries of these methods.
+As illustrated in Figure 1, even non-toxic prompts (those with a toxicity score from Perspective less than 0.5) lead to toxic generations. The crux of the paper is in their assessment of five ways to detoxify LM generations. Below are quick summaries of these methods and how they reduce toxic generations.
 
 ### Data-Based Detoxification
 
@@ -62,14 +62,14 @@ Vocabulary Shifting
 : Modify the decoding algorithm to give higher probability to non-toxic tokens. Learns a weight for each vocabulary token which represents the association between each token and (non-)toxicity.
 
 Word Filtering
-: Create a blacklist of profanity, slurs, and swearwords and sets the probability of generating those words to zero, which prevents the LMs from generating them altogether.
+: Create a blacklist of profanity, slurs, and swearwords and set the probability of generating those words to zero to prevent the LMs from generating them altogether.
 
 [PPLM](https://openreview.net/pdf?id=H1edEyBKDS){:target="_blank"}
 : Combine a pretrained, unconditional language model with one or more simple attribute models, which are small and cheap models that figure out latent gradients between attributes and the pretrained language models to steer outputs.
 
 ### Results
 
-As one might expect, none of the detoxification methods assessed completely eradicated toxic generations; toxic prompts yielded higher toxicity in generation than non-toxic prompts. What's somewhat surprising is that non-toxic prompts occasionally also led to toxic generations. It should be clear then that even benign models can be harmful. The authors point out that it's also surprising that the model trained on only Wikipedia (CTRL-WIKI) showed similar levels of toxicity in its generations, despite not being trained on Reddit data! Nonetheless, DAPT is one of the most effective methods (which I found surprising, given its simplicity), along with vocabulary shifting, and PPLM. The authors lastly state that steering generations after pretraining must thus be crucial for preventing toxic output.
+As one might expect, none of these detoxification methods completely eradicated toxic generations; and toxic prompts yielded higher toxicity in generation than non-toxic prompts. What's somewhat surprising is that non-toxic prompts occasionally also led to toxic generations. It should be clear then that even benign models can be harmful. The authors point out that it's also surprising that the CTRL-WIKI model produced toxic content, despite being pretrained to generate Wikipedia-style output<d-footnote>The authors also state it's interesting since "[the model] was trained on just Wikipedia." I'm not sure this statement is true after skimming the original CTRL paper from Kaskar et al. (2019).</d-footnote>. Furthermore, DAPT is one of the most effective methods (which I found surprising, given its simplicity), along with vocabulary shifting, and PPLM. The authors lastly state that steering generations after pretraining must thus be crucial for preventing toxic output.
 
 There were some phrases, which when used to prompt the models consistently returned toxic generations. These prompts were often toxic themselves or had the opening phrase of known toxic sentences ("his rant was full of..."). Lastly, about 10% of the prompts came from unreliable or toxic data sources, which we get into next.
 
@@ -94,7 +94,7 @@ The authors conclude with a discussion and a variety of recommendations for NLP 
 
 1. "Can language models ever fully 'forget' toxic pretraining data through further adaptation?"
 
-    Essentially, you can start with a model trained on some bad data, but is there any amount of finite data you could then continue pretraining on to wash out, to "forget", the bad stuff? It seems as though the LMs are "memorizing" the bad content, which might come from such content being more salient to the model. The authors recommend future work explores whether some types of toxicity are more difficult for models to forget.
+    Essentially, you can start with a model trained on some bad data, but is there any amount of finite data you could then continue pretraining on to wash out, to "forget", the bad stuff? It seems as though the LMs are "memorizing" the bad content, which might come from such content being more salient to the model. The authors recommend for future work to explore whether some types of toxicity are more difficult for models to forget.
 
 2. Purposeful decoding
 
@@ -102,14 +102,14 @@ The authors conclude with a discussion and a variety of recommendations for NLP 
 
 3. Choice of Pretraining Data
 
-    The authors also call for a dramatic introspection of the training data with which LMs learn on. Some issues arise when relying on huge swathes of data with no filtering e.g., Reddit is known to have a biased user-base. This should call to question: "who decides whose voices are going to be learned by the language model." One appealing recommendation is to make the pretraining process more human-centered, including through participatory design.
+    The authors also call for a dramatic introspection of the training data with which LMs learn on. Some issues arise when relying on huge swathes of data with very little filtering e.g., Reddit is known to have a biased user-base. This should call to question: "who decides whose voices are going to be learned by the language model." One appealing recommendation is to make the pretraining process more human-centered, including through participatory design.
 
     The authors lastly caution that curating pretraining data without deep thought might have unintended side-effects, such as filtering out benign text from African American authors/users. They suggest engaging with the end-user during this phase.
 
 ## Take-aways
 
-It's a compelling and mostly uncontroversial article, which clearly highlights shortcomings currently in NLP. I think too little is said about the impact on industry (companies are currently trying to solve this problem), and society as a whole. In fact, regarding the latter, I think more could have been said about the practical implications of LM degeneration on the spreading of misinformation. In sum though, the authors created a valuable dataset for future reesarch, and exposed a lower bound on toxicity degeneracy in LMs.
+It's a compelling and mostly uncontroversial article, which clearly highlights shortcomings currently in NLP. I think too little is said about the impact on industry (companies are currently trying to solve this problem), and society as a whole. In fact, regarding the latter, I think more could have been said about the practical implications of LM degeneration on the spreading of misinformation. In sum though, the authors created a valuable dataset for future research, and exposed a lower bound on toxicity degeneracy in LMs.
 
 I'm also a little unsatisfied by the authors' operationalization of toxicity. While I understand their desire to create a large dataset for other researchers to train on, I'm not sure the Perspective API should be considered the end of the conversation. Undoubtedly, it will produce false positives and false negatives (which the authors briefly mentioned), which should lead us to question if their assessments are answering the right questions. If their ground truth is not what a human would believe, then this could easily disrupt their main claims.
 
-Lastly, on the topic of what humans would believe: some people find some things offensive, others don't. Are the authors (or by proxy, Perspective) justified in claiming what is toxic and what is not? More philosophically, can someone claim what is right or wrong for someone else?
+Lastly, on the topic of what humans would believe: some people find some things offensive, others don't. Are the authors (or by proxy, Perspective) justified in claiming what is toxic and what is not? More philosophically, can someone speak for someone else on what is right or wrong?
