@@ -9,7 +9,7 @@ authors:
   - name: A.L.
 ---
 
-The blog title and subtitle might not sounds... correct. Your gut is correct, they were not written by me. They were [composed by GPT-2](https://transformer.huggingface.co/doc/gpt2-large) according to a prompt:
+The blog title and subtitle might not sounds... correct. Your gut is correct, they were not written by me. They were [composed by GPT-2](https://transformer.huggingface.co/doc/gpt2-large){:target="_blank"} according to a prompt:
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
