@@ -2,8 +2,8 @@
 layout: distill
 title:  Book Completion Estimation
 date:   2020-10-12
-description:
-readtime: 7.3
+description: how to estimate when you'll finish a novel
+readtime: 10.7
 
 authors:
   - name: A.L.
@@ -132,15 +132,11 @@ Using the algorithm described above, we will sample 2,000 draws of the posterior
     Histogram of days remaining on my book drawn from the posterior predictive distribution
 </div>
 
-The mean here is 35.4, with a median of 35 (95% Credible Interval: [29, 42]). We can take this one step further and visualize how the prediction accuracy improves over time (i.e. with more data).
+The mean here is 35.4, with a median of 35 (89% Credible Interval: [30, 41])<d-footnote>For an explanation of why I'm using 89% Credible Intervals, see <a href="https://easystats.github.io/bayestestR/articles/credible_interval.html#why-is-the-default-89" target="_blank">this nice summary</a>. In short, all intervals are arbitrary, so why not pick one that's slightly less arbitrary.</d-footnote>. We can take this one step further and visualize how the prediction accuracy improves over time (i.e. with more data).
 
 For each day in sequence, we can re-estimate the model parameters (with progressively more data). On each re-fit, we'll add up the hours we estimate we have left and the hours we know we will read on future days to say how long it will take to finish *from that day*. As we artificially gain information, our estimates naturally become more precise. This is because we home in on a better estimate for how often we read and much we read when we do. We can find 95% and 68.2% credible intervals as well. In fact, we can nicely display this all as such:
 
-<div class="row mt-3">
-    <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/img/estimation-improvement.png">
-    </div>
-</div>
+<div id="container" style="width:100%; height:400px;"></div>
 <div class="caption">
     As our model sees more data with each new day, the parameter estimates become more accurate. Hence, our estimate for the remaining days gets more accurate. Right above the x-axis are the number of hours I read each day, so you don't have to scroll up to cross-reference.
 </div>
@@ -154,3 +150,88 @@ Consider our original estimation: 32 days until completion. Although fairly clos
 ## Overall
 
 Overall, this is a case study that current estimations of when one will finish a book are sufficient for some, but not for all. I am happy to know how quickly I will finish my book since it allows me to set goals and feel good about my progress, knowing that sooner or later (probably in less than Y days) I will be able to put the book aside and begin the next. Now, reading is not all a numbers game. And I'm not racing anyone. I am, however, eager to read as much as a can before it is my turn to make lofty decisions in life. Books are meant to be enjoyed. If you're not enjoying them while reading there is scarcely a method to your madness. It can be tempting to scold or punish yourself, or feel guilty for not meeting your reading goal. If you do not meet the estimated average time to completion--keep in mind that the distribution is infinite and some books will either take a *very* long time to finish, or will never be finished, and that's okay too.
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    var myChart = Highcharts.chart('container', {
+        title: {
+            text: 'Improving Estimation of Days Remaining on "The Brothers Karamazov"'
+        },
+        yAxis: {
+            title: {
+                text: 'Days until Completion'
+            }
+        },
+        xAxis: {
+            title: {
+                text: 'Day Logged'
+            }
+        },
+        tooltip: {
+            crosshairs: [true, true],
+            shared: true,
+        },
+        series: [{
+            name: 'Days Remaining',
+            data: [[2, 43],
+                  [3, 41],
+                  [4, 44],
+                  [5, 41],
+                  [6, 40],
+                  [7, 37],
+                  [8, 37],
+                  [9, 34],
+                  [10, 35]],
+            zIndex: 1,
+            color: '#ad1d13',
+            marker: {
+                fillColor: 'white',
+                lineWidth: 2,
+                lineColor: '#ad1d13'
+            }
+        }, {
+            name: '89% Credible Interval',
+            data: [[2, 26, 59],
+                  [3, 30, 53],
+                  [4, 35, 54],
+                  [5, 34, 50],
+                  [6, 33, 47],
+                  [7, 31, 44],
+                  [8, 32, 44],
+                  [9, 29, 40],
+                  [10, 30, 41]],
+            type: 'arearange',
+            lineWidth: 0,
+            linkedTo: ':previous',
+            opacity: 0.3,
+            color: 'red',
+            zIndex: 0,
+            marker: {
+                enabled: false
+            }
+        }, {
+            name: '45% Credible Interval',
+            data: [[2, 35, 51],
+                  [3, 35, 47],
+                  [4, 39, 49],
+                  [5, 37, 46],
+                  [6, 36, 43],
+                  [7, 34, 40],
+                  [8, 34, 40],
+                  [9, 32, 37],
+                  [10, 32, 38]],
+            type: 'arearange',
+            lineWidth: 0,
+            linkedTo: ':previous',
+            opacity: 0.3,
+            color: 'red',
+            zIndex: 0,
+            marker: {
+                enabled: false
+            }
+        }]
+    });
+});
+</script>
