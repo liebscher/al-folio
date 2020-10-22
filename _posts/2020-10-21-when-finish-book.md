@@ -1,7 +1,7 @@
 ---
 layout: distill
 title:  When will I finish that book?
-date:   2020-10-19
+date:   2020-10-21 17:20:00
 description: here i build a probabilistic model to estimate when i'll finish a book
 readtime: 11.6
 
