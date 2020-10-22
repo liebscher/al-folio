@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Alex  Liebscher | Setting up AWS IAM</title>
+<meta name="description" content="A home for Alex Liebscher, featuring news, a blog, projects, and publications
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/github.css" />
+
+<!-- Styles -->
+<link rel="shortcut icon" href="/assets/img/favicon.ico">
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<link rel="canonical" href="/blog/2020/aws-iam/">
+
+<!-- Theming-->
+
+
+
+
+    
+<!-- MathJax -->
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+    <script src="/assets/js/distillpub/template.v2.js"></script>
+    <script src="/assets/js/distillpub/transforms.v2.js"></script>
+    
+  </head>
+
+  <d-front-matter>
+    <script async type="text/json">{
+      "title": "Setting up AWS IAM",
+      "description": "a quick introduction to AWS Identity and Access Management",
+      "published": "2020-06-20 00:00:00 -0700",
+      "readtime": "5.8",
+      "authors": [
+        
+        {
+          "author": "A.L.",
+          "authorURL": "",
+          "affiliations": [
+            {
+              "name": "",
+              "url": ""
+            }
+          ]
+        }
+        
+      ],
+      "katex": {
+        "delimiters": [
+          {
+            "left": "$",
+            "right": "$",
+            "display": false
+          },
+          {
+            "left": "$$",
+            "right": "$$",
+            "display": true
+          }
+        ]
+      }
+    }</script>
+  </d-front-matter>
+
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="/">
+       <span class="font-weight-bold">Alex</span>   Liebscher
+      </a>
+      
+      <!-- Navbar Toogle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              about
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/projects/">
+                projects
+                
+              </a>
+          </li>
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                publications
+                
+              </a>
+          </li>
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/resources/">
+                resources
+                
+              </a>
+          </li>
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="post distill">
+
+      <d-title>
+        <h1>Setting up AWS IAM</h1>
+        <p>a quick introduction to AWS Identity and Access Management</p>
+      </d-title>
+
+      <d-byline></d-byline>
+
+      <d-article>
+        <p>Cloud computing and storage services are becoming an essential for many businesses. As a more versatile and easier to scale option than on-premise solutions, their demand has noticeably increased. As businesses look toward these solutions, developers must grow and adapt. Students or professionals without much AWS experience can broaden their skillset by playing around with these platforms. Luckily for this demographic (myself included), the three main cloud providers—Amazon Web Services (AWS), Google Cloud Platform (GCP), and Microsoft Azure—all offer free tiers to get started learning and experimenting.</p>
+
+<p>These services are much different than what’s learned in the sometimes archaic education system, so they can be confusing and easy to get wrong when learning. The goal for this article is to demonstrate how to set up a personal-use Amazon Web Services account according to some best practices for Identity and Access Management (IAM). This will be targeted at students and professionals without much AWS experience, and should be about a 10 minute read (although you’re encouraged to try things out yourself). Learning how to properly setup and authenticate your work in the cloud is important for three reasons: 1) to mitigate any opportunities to compromise yourself, your work, your billing information, or other sensitive data, 2) to mitigate any opportunities to mess up and get frustrated, and 3) it’s always good to follow best practices!</p>
+
+<p>If you’re just getting started working with cloud services or are looking to begin, I think this article presents a good first or second step. I recommend following the tips at the bottom as soon as you feel ready!</p>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/iam_workflow.png" />
+    </div>
+</div>
+<div class="caption">
+An example workflow of attributing permissions to an Administrator user on AWS. Source: <a href="https://wellarchitectedlabs.com/security/100_labs/100_basic_identity_and_access_management_user_group_role/1_iam/" target="_blank">AWS Well-Architected Labs</a>
+</div>
+
+<h2 id="terminology">Terminology</h2>
+
+<p>For me, one of the most difficult aspects of learning how to use cloud services was hurdling over the increase in vocabulary. Many terms are polysemous with other developer terms and appear to be drawn together from a variety of computing subdisciplines. Quickly, I’ll introduce some key terms which you should be familiar with as you endeavour into space.</p>
+
+<dl>
+  <dt>IAM</dt>
+  <dd>The Identity and Access Management section of AWS allows one to control the degree to which different people and services can access parts of the AWS account. It’s how permissions are set and security tightened.</dd>
+  <dt>Root</dt>
+  <dd>In a hierarchy of control, the root users has access to everything. It’s like using <code class="language-plaintext highlighter-rouge">sudo</code> in a shell program. We’ll cover this soon, but it’s strongly discouraged to use this login on a daily basis due to the power it holds. For example, under this user you can control the accounts billing information and payment methods.</dd>
+  <dt>User</dt>
+  <dd>A type of individual with less power than the root user. These can be granted unique login credentials. Some common users would be Administrators and Machine Learning Engineers – obviously the MLEs should have less power than the full admins, and by assigning people to user accounts, that can be controlled.</dd>
+  <dt>Group</dt>
+  <dd>A collection of users with a pre-specified set of permissions. These are useful because it’s easier to manage a collection of users rather than manually going through a list of users to change their individual permissions. Using groups is simply a way to attach permissions to multiple users at one time. A common example is an Administrators group, which can have multiple admins all with the same permissions.</dd>
+  <dt>Role</dt>
+  <dd>A collection of policies/permissions assigned to one or more users when needed. The key here is that, separately from groups, roles provide temporary security. These are useful if you want to, for example, provide credentials to an external group for auditing purposes, or to assign a set of permissions to an AWS service that allow it access another AWS service.</dd>
+  <dt>Policy</dt>
+  <dd>A policy is a marker that defines permissions. These can get complicated, so <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html" target="_blank">here’s a link to the in-depth explanation</a>. For example though, one might create a group called <code class="language-plaintext highlighter-rouge">MainTableAccess</code> and assign some users to it, and the policy attached to this group only <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_dynamodb_specific-table.html" target="_blank">allows those in the group to access a specific table</a> in a DynamoDB database.</dd>
+  <dt>Service</dt>
+  <dd>One of the many subplatforms on AWS that can cause functionality, such as Lambda or EC2.</dd>
+</dl>
+
+<h2 id="quick-setup">Quick Setup</h2>
+
+<h3 id="tip-1">Tip #1</h3>
+
+<p>The first key to securing your AWS account and ensuring your permissions won’t allow you or others to intentionally, or otherwise, compromise your account, is to follow the <a href="https://en.wikipedia.org/wiki/Principle_of_least_privilege" target="_blank">least privileges model</a>. Under this mindset, we only assign permissions as they’re needed. This ensures no user is too privileged, to the point where they may accidentally harm the account.</p>
+
+<p>Most importantly, make sure that you set up a non-root user. You’ll almost never want to use the root user. Instead, here I’ll guide you to setting up an Administrator user. Administrator accounts don’t get to access things like billing information and cost management, although they can do things like manage users and groups which less powerful users cannot.</p>
+
+<p>To add an administrator user to your personal AWS account, navigate to your AWS home, where you’ll see an option to add a user. Name your new user <code class="language-plaintext highlighter-rouge">Administrator</code> or something like it. I assume you’re working through the console, but may later want to set up the AWS command line tools, so check off programmatic and AWS Management Console access. Choose to set a password later (if you set one now you’ll still have to reset it later). We’ll create a new group of users called <code class="language-plaintext highlighter-rouge">Administrators</code> and select the <code class="language-plaintext highlighter-rouge">AdministratorAccess</code> policy. Skip the Tags section and review what you’ve done. There will be a link in the success box which, upon clicking, will log out the root user and prompt you to log in under a new user. Your username is <code class="language-plaintext highlighter-rouge">Administrator</code> (or whatever you chose) and the password was that which was generated.</p>
+
+<h3 id="tip-2">Tip #2</h3>
+
+<p>My second tip is to <a href="https://aws.amazon.com/iam/features/mfa" target="_blank">set up Multi-Factor Authentication (MFA)</a>. This is an added layer of protection from anyone unwanted accessing your account, which becomes more important your projects and work scale up. For students at UC San Diego, we’ve become accustomed to using <a href="https://duo.com" target="_blank">Duo Security</a> as a two-factor authentication system. With Duo, when you log in with your username and password, you’ll also be prompted for an authentication response within the app.</p>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/aws_iam_mfa.png" />
+    </div>
+</div>
+<div class="caption">
+Preview of setting up Multi-Factor Authentication in AWS. Using Duo is an easy solution and requires scanning a QR code and entering the corresponding authentication codes.
+</div>
+
+<p>To set up MFA, navigate to your AWS IAM home, where there will be an accordion of security credential options. Select to activate MFA, and choose <code class="language-plaintext highlighter-rouge">Virtual MFA Device</code>. Open Duo, scan the QR code, and enter in the authentication keys. Done!</p>
+
+<h2 id="overview">Overview</h2>
+
+<p>That’s it for this post, but I encourage you go on and explore the IAM aspect of AWS further, especially in regards to the policies and roles that may be set. Once we begin setting up services like Lambda and DynamoDB, it will be important to only allow the bare minimum of what they need to access.</p>
+
+      </d-article>
+
+      <d-appendix>
+        <d-footnote-list></d-footnote-list>
+        <d-citation-list></d-citation-list>
+      </d-appendix>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    &copy; Copyright 2020 Alex  Liebscher.
+    Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+
+    
+    Last updated: October 21, 2020.
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <d-bibliography src="/assets/bibliography/">
+  </d-bibliography>
+
+  
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-49586816-3"></script>
+<script>
+if (window.location.hostname != "localhost") {
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'UA-49586816-3');
+}
+</script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+<!-- Load DarkMode JS -->
+<script src="/assets/js/dark_mode.js"></script>
+
+
+</html>

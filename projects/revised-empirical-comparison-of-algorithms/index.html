@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>Alex  Liebscher | Tales from Diverse Spaces</title>
+<title>Alex  Liebscher | A Revised Empirical Comparison of Supervised Learning Algorithms</title>
 <meta name="description" content="A home for Alex Liebscher, featuring news, a blog, projects, and publications
 ">
 
@@ -29,7 +29,7 @@
 <link rel="shortcut icon" href="/assets/img/favicon.ico">
 <link rel="stylesheet" href="/assets/css/main.css">
 
-<link rel="canonical" href="/blog/">
+<link rel="canonical" href="/projects/revised-empirical-comparison-of-algorithms/">
 
 <!-- Theming-->
 
@@ -76,7 +76,7 @@
           </li>
           
           <!-- Blog -->
-          <li class="nav-item active">
+          <li class="nav-item ">
             <a class="nav-link" href="/blog/">
               blog
               
@@ -137,66 +137,19 @@
     <div class="container mt-5">
       <div class="post">
 
-  <div class="header-bar">
-    <h1>Tales from Diverse Spaces</h1>
-    <h2>The Language I Read That Makes Ideas Fit Together</h2>
-  </div>
+  <header class="post-header">
+    <h1 class="post-title">A Revised Empirical Comparison of Supervised Learning Algorithms</h1>
+    <p class="post-description"></p>
+  </header>
 
+  <article>
+    <p><a href="https://github.com/liebscher/cogs118a-model-comparison/blob/master/Liebscher_COGS_118A_Final_Project_PUB.pdf" target="_blank">Read the paper</a> or <a href="https://github.com/liebscher/cogs118a-model-comparison/blob/master/" target="_blank">browse the code</a></p>
 
-  <ul class="post-list">
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/when-finish-book/">When will I finish that book?</a></h3>
-        <p class="post-meta">October 21, 2020</p>
-        <p>here i build a probabilistic model to estimate when i'll finish a book</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/locke-trump/">On Locke and the Trump Administration</a></h3>
-        <p class="post-meta">October 17, 2020</p>
-        <p>an analogy between Locke's standard of tyranny and the Trump Administration</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/evaluating-neural-toxic-degeneration/">Review: <i>Evaluating Neural Toxic Degeneration in Language Models</i></a></h3>
-        <p class="post-meta">October 17, 2020</p>
-        <p>Language Models suffer from degenerate and biased behavior, can we fix that?</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/blog-origins/">Blog Origins</a></h3>
-        <p class="post-meta">October 14, 2020</p>
-        <p>how this blog came to be</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/aws-iam/">Setting up AWS IAM</a></h3>
-        <p class="post-meta">June 20, 2020</p>
-        <p>a quick introduction to AWS Identity and Access Management</p>
-      </li>
-    
-  </ul>
+<p>For any classification problem, choosing a proper classifier and its parameters is critical for success. This paper is my attempt at pushing for methodical supervised machine learning. <strong>I evaluate the performance of seven classification algorithms across four data sets.</strong> For thoroughness, each classifier was tested over three independent trials, where each trial was subject to three partitions of the data. For each partition of the data, cross validation was performed. For each CV fold, an optimal set of hyper-parameters was found for the classifier using Bayesian Search. Contrary to traditional grid search, this method improves performance, takes advantage of the underlying parameter space with specific priors, and reduces redundant and insignificant searches. Performance overall proved that Random Forests, Gradient Boosted Trees, and RBF-SVM achieve the highest results. K-Nearest Neighbors may also be a viable solution but should be treated with care and precision.</p>
 
-  
-<nav aria-label="Blog page naviation">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="" tabindex="-1" aria-disabled="">Newer</a>
-    </li>
-    
-      
-        <li class="page-item active"><a class="page-link" href="/blog/index.html" title="Tales from Diverse Spaces">1</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/2/index.html" title="Tales from Diverse Spaces - page 2">2</a></li>
-      
-    
-    <li class="page-item ">
-      <a class="page-link" href="/blog/page/2/">Older</a>
-    </li>
-  </ul>
-</nav>
+<p><em>Tools: Python (pandas, numpy, scikit-learn, xgboost, scikit-optimize, multiprocessing), Github &amp; git</em></p>
 
-
+  </article>
 
 </div>
 
