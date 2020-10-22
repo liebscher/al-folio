@@ -7,6 +7,11 @@ readtime: 11.6
 
 authors:
   - name: A.L.
+
+custom-javascript:
+  - "https://code.highcharts.com/highcharts.js"
+  - "https://code.highcharts.com/highcharts-more.js"
+  - "/assets/js/2020-10-21-when-finish-book.js"
 ---
 
 It's ironic that one of my first thoughts when I start a book is about when I'll finish it. That thought seems to stem from the feeling of knowing there're so many things to read, yet so little time<d-footnote>If there's a name for this feeling, please let me know. The Japanese term <a href="https://en.wikipedia.org/wiki/Tsundoku" target="_blank">Tsundoku</a> is not quite what I'm thinking.</d-footnote>. No matter how much I'm enjoying a book, I'm somehow always looking forward to what's next.
