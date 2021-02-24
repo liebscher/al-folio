@@ -67,12 +67,14 @@ Let $$Y$$ be the event denoting the number of hours (in decimal form) we read on
 
 Finally, to flesh out $y$, we'll say:
 
+<p>
 $$
 y_i \sim \begin{cases}
       \text{t}_\nu (\mu, \sigma) & \text{if}\;B_i \\
       0 & \text{otherwise}
    \end{cases}
 $$
+</p>
 
 To incorporate all the necessary variance, we also will define the distributions of $$\theta$$, $$\mu$$, and $$\sigma$$ ($$\nu$$ will be supplied in the problem by the amount of data we're inputing). A perfect distribution for a Bernoulli probability is the Beta distribution, so $$\theta \sim \text{Beta}(1,1)$$. $$\mu$$ will be modeled by a normal distribution, centered around 10 minutes per day with a bit of variance (this number comes from a national average of how much Americans read per day). Lastly, $\sigma$ will be modeled by an inverse Gamma, with $$\alpha = 0.07/0.93$$ (to center the distribution over 0.93 hours) and $$\beta = 1$$. All three of these help establish the larger model as a completely random data generation process. In `rstan` this looks like:
 
