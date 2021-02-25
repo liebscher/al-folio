@@ -51,7 +51,7 @@ blogger_url: # your blogger URL
 
 contact_note:
 
-google_analytics: UA-49586816-3 # out your google-analytics code
+google_analytics: # out your google-analytics code
 
 # -----------------------------------------------------------------------------
 # Blog
@@ -145,7 +145,7 @@ scholar:
 # Optional Features
 # -----------------------------------------------------------------------------
 
-enable_google_analytics:  true
+enable_google_analytics:  false
 enable_mansory:           true
 enable_math:              true
 enable_tooltips:          false
