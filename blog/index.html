@@ -18,6 +18,13 @@ pagination:
   <div class="header-bar">
     <h1>{{ site.blog_name }}</h1>
     <h2>{{ site.blog_description }}</h2>
+    <form style="text-align:center;margin-top:1em;" action="https://tinyletter.com/liebscher" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/liebscher', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+      <p><label for="tlemail">Subscribe for a notification when a new article is published:</label></p>
+      <p><input type="text" style="width:200px" name="email" id="tlemail" placeholder="name@email.com"/></p>
+      <input type="hidden" value="1" name="embed"/><input type="submit" value="Subscribe" />
+      <p><a href="https://tinyletter.com" target="_blank" style="font-size:70%;">powered by TinyLetter</a></p>
+    </form>
+
   </div>
 
 

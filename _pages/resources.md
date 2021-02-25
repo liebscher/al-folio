@@ -37,6 +37,7 @@ nav: true
 | Machine Learning Research Blog  	| <https://francisbach.com/>                      	| [Machine Learning / Optimization]             |
 | Mark H. White II, PhD           	| <https://www.markhw.com/>                       	| [Statistics / Data Science]                  	|
 | Mathemathinking                 	| <http://corysimon.github.io/>                   	| [Probability / Machine Learning / Chemistry] 	|
+| Michael Betancourt                | <https://betanalpha.github.io/writing/>           | [Probability / Statistics]                    |
 | Mikhail Popov                     | <https://mpopov.com/>                             | [R / Statistics]                              |
 | Nick Higham                       | <https://nhigham.com/>                            | [Applied Mathematics]                         |
 | Noah Liebman                    	| <https://noahliebman.net/>                      	| [Probability]                                	|
