@@ -2,7 +2,7 @@
 layout: distill
 title: Edward Hopper - A Teacher
 description: a short dive into the human condition with Edward Hopper
-date: 2021-02-25 12:00:00
+date: 2021-02-28 12:00:00
 
 authors:
   - name: A.L.
